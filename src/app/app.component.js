@@ -9,24 +9,81 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var Hero = (function () {
-    function Hero() {
+var Flower = (function () {
+    function Flower() {
     }
-    return Hero;
+    return Flower;
 }());
-exports.Hero = Hero;
+exports.Flower = Flower;
+var FLOWERS = [
+    {
+        flower_id: 1,
+        flower_name: 'Rose',
+        flower_Desc: ' Roses have been naturally growing for over 35 million years! However, they were not known to be cultivated until about 5,000 years ago.',
+    },
+    {
+        flower_id: 2,
+        flower_name: 'Sunflower',
+        flower_Desc: 'Sunflowers are one of the most popular flower types and are best known for their dazzling yellow color and large size.',
+    },
+    {
+        flower_id: 3,
+        flower_name: 'Lavender',
+        flower_Desc: 'Lavender are sweet herb garden favorites that provide soothing fragrances, flavorings, and beauty all together in little floral packages.',
+    },
+    {
+        flower_id: 4,
+        flower_name: 'Orchid',
+        flower_Desc: 'Orchids are one of the oldest flowering plants known to man? Scientists speculate that orchids have been around as long as 100 million years.',
+    },
+    {
+        flower_id: 5,
+        flower_name: 'Tulip',
+        flower_Desc: 'Like most common flowers, tulips come in a wide variety of colors and shapes, each of which has its own meaning.',
+    },
+    {
+        flower_id: 6,
+        flower_name: 'Marigold',
+        flower_Desc: 'Beautifully orange and gold in color, marigolds symbolize a desire for wealth and success.',
+    },
+    {
+        flower_id: 7,
+        flower_name: 'Peony',
+        flower_Desc: 'Peonies, a beloved flower that blooms in late spring/early summer, come in a wide variety of colors.',
+    },
+    {
+        flower_id: 8,
+        flower_name: 'Dahlia',
+        flower_Desc: 'These attractive blooms come in a wide range of colors and can be easily incorporated into any existing or new garden',
+    },
+    {
+        flower_id: 9,
+        flower_name: 'Daffodil',
+        flower_Desc: 'Daffodils go by many names depending on the species and variety — narcissus, jonquils, or paperwhites — but they are all daffodils and they all belong to the genus Narcissus.',
+    },
+    {
+        flower_id: 0,
+        flower_name: 'Zinnia ',
+        flower_Desc: 'Colorful, easy-to-grow zinnias are a beginner gardener’s dream. ',
+    },
+];
 var AppComponent = (function () {
     function AppComponent() {
-        this.title = 'Tour of Heroes';
-        this.hero = {
-            id: 1,
-            name: 'Windstorm'
+        this.MyPageHeader = 'Tour of Beautiful flowers';
+        this.flower = {
+            flower_id: 1,
+            flower_name: 'Jasmine',
+            flower_Desc: 'The main reason jasmine is so famous is its strong fragrance.',
         };
+        this.flowers = FLOWERS;
     }
+    AppComponent.prototype.onSelect = function (flower) {
+        this.selectedFlower = flower;
+    };
     AppComponent = __decorate([
         core_1.Component({
             selector: 'my-app',
-            template: "\n    <h1>{{title}}</h1>\n    <h2>{{hero.name}} details!</h2>\n    <div><label>id: </label>{{hero.id}}</div>\n    <div>\n      <label>name: </label>\n      <input [(ngModel)]=\"hero.name\" placeholder=\"name\">\n    </div>\n    "
+            template: "\n    <h1>{{MyPageHeader}}</h1>\n    <h2>{{flower.flower_name}} details!</h2>\n    <div><label>id: </label>{{flower.flower_id}}</div>\n    <div>\n      <label>name: </label>\n      <input [(ngModel)]=\"flower.flower_name\" placeholder=\"flower_name\"><br>\n      \n    </div>\n    <div>\n    <label>Decription: {{flower.flower_Desc}}</label>\n    </div>\n\n    <h2>My Flowers</h2>\n    <ul class=\"flowers\">\n      <li *ngFor=\"let flower of flowers\"\n        [class.selected]=\"flower === selectedFlower\"\n        (click)=\"onSelect(flower)\">\n        <span class=\"badge\">{{flower.flower_id}}</span> {{flower.flower_name}}\n      </li>\n    </ul>\n    <div *ngIf=\"selectedFlower\">\n      <h2>{{flower.flower_name}} details!</h2>\n      <div><label>id: </label>{{flower.flower_id}}</div>\n      <div>\n        <label>name: </label>\n        <input [(ngModel)]=\"flower.flower_name\" placeholder=\"flower_name2\"/>\n      </div>\n      <h2>Description : {{flower.flower_Desc}}</h2>\n    </div>\n   \n    ",
         }), 
         __metadata('design:paramtypes', [])
     ], AppComponent);
