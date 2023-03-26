@@ -62,7 +62,7 @@ var FLOWERS = [
         flower_Desc: 'Daffodils go by many names depending on the species and variety — narcissus, jonquils, or paperwhites — but they are all daffodils and they all belong to the genus Narcissus.',
     },
     {
-        flower_id: 0,
+        flower_id: 10,
         flower_name: 'Zinnia ',
         flower_Desc: 'Colorful, easy-to-grow zinnias are a beginner gardener’s dream. ',
     },
@@ -83,7 +83,7 @@ var AppComponent = (function () {
     AppComponent = __decorate([
         core_1.Component({
             selector: 'my-app',
-            template: "\n    <h1>{{MyPageHeader}}</h1>\n    <h2>{{flower.flower_name}} details!</h2>\n    <div><label>id: </label>{{flower.flower_id}}</div>\n    <div>\n      <label>name: </label>\n      <input [(ngModel)]=\"flower.flower_name\" placeholder=\"flower_name\"><br>\n      \n    </div>\n    <div>\n    <label>Decription: {{flower.flower_Desc}}</label>\n    </div>\n\n    <h2>My Flowers</h2>\n    <ul class=\"flowers\">\n      <li *ngFor=\"let flower of flowers\"\n        [class.selected]=\"flower === selectedFlower\"\n        (click)=\"onSelect(flower)\">\n        <span class=\"badge\">{{flower.flower_id}}</span> {{flower.flower_name}}\n      </li>\n    </ul>\n    <div *ngIf=\"selectedFlower\">\n      <h2>{{flower.flower_name}} details!</h2>\n      <div><label>id: </label>{{flower.flower_id}}</div>\n      <div>\n        <label>name: </label>\n        <input [(ngModel)]=\"flower.flower_name\" placeholder=\"flower_name2\"/>\n      </div>\n      <h2>Description : {{flower.flower_Desc}}</h2>\n    </div>\n   \n    ",
+            template: "\n    <h1>{{MyPageHeader}}</h1>\n    <h2>{{flower.flower_name}} details!</h2>\n    <div><label>id: </label>{{flower.flower_id}}</div>\n    <div>\n      <label>name: </label>\n      <input [(ngModel)]=\"flower.flower_name\" placeholder=\"flower_name\"><br>\n      \n    </div>\n    <div>\n    <label>Decription: {{flower.flower_Desc}}</label>\n    </div>\n\n    <h2>My Flowers</h2>\n    <ul class=\"flowers\">\n      <li *ngFor=\"let flower of flowers\"\n        [class.selected]=\"flower === selectedFlower\"\n        (click)=\"onSelect(flower)\">\n        <span class=\"badge\">{{flower.flower_id}}</span> {{flower.flower_name}}\n      </li>\n    </ul>\n    <div *ngIf=\"selectedFlower\">\n      <h2>{{selectedFlower.flower_name}} details!</h2>\n      <div><label>id: </label>{{selectedFlower.flower_id}}</div>\n      <div>\n        <label>name: </label>\n        <input [(ngModel)]=\"selectedFlower.flower_name\" placeholder=\"flower_name2\"/>\n      </div>\n      <h2>Description : {{selectedFlower.flower_Desc}}</h2>\n    </div>\n   \n    ",
         }), 
         __metadata('design:paramtypes', [])
     ], AppComponent);

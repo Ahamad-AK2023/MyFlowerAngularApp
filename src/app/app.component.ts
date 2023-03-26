@@ -62,7 +62,7 @@ const FLOWERS: Flower[] = [
       'Daffodils go by many names depending on the species and variety — narcissus, jonquils, or paperwhites — but they are all daffodils and they all belong to the genus Narcissus.',
   },
   {
-    flower_id: 0,
+    flower_id: 10,
     flower_name: 'Zinnia ',
     flower_Desc:
       'Colorful, easy-to-grow zinnias are a beginner gardener’s dream. ',
@@ -93,13 +93,13 @@ const FLOWERS: Flower[] = [
       </li>
     </ul>
     <div *ngIf="selectedFlower">
-      <h2>{{flower.flower_name}} details!</h2>
-      <div><label>id: </label>{{flower.flower_id}}</div>
+      <h2>{{selectedFlower.flower_name}} details!</h2>
+      <div><label>id: </label>{{selectedFlower.flower_id}}</div>
       <div>
         <label>name: </label>
-        <input [(ngModel)]="flower.flower_name" placeholder="flower_name2"/>
+        <input [(ngModel)]="selectedFlower.flower_name" placeholder="flower_name2"/>
       </div>
-      <h2>Description : {{flower.flower_Desc}}</h2>
+      <h2>Description : {{selectedFlower.flower_Desc}}</h2>
     </div>
    
     `,
