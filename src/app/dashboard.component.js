@@ -9,19 +9,26 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var AppComponent = (function () {
-    function AppComponent() {
-        this.title = 'Tour of Flowers';
+var flower_service_1 = require('./flower.service');
+var DashboardComponent = (function () {
+    function DashboardComponent(flowerService) {
+        this.flowerService = flowerService;
+        this.flowers = [];
     }
-    AppComponent = __decorate([
+    DashboardComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.flowerService.getFlowers()
+            .then(function (flowers) { return _this.flowers = flowers.slice(1, 5); });
+    };
+    DashboardComponent = __decorate([
         core_1.Component({
-            selector: 'my-app',
-            template: "\n  <h1>{{title}}</h1>\n  <nav>\n    <a routerLink=\"/dashboard\" routerLinkActive=\"active\">Dashboard</a>\n    <a routerLink=\"/flowers\" routerLinkActive=\"active\">Flowers</a>\n  </nav>\n  <router-outlet></router-outlet>\n  ",
-            styleUrls: ['./app.component.css'],
+            selector: 'myflowers-dashboard',
+            templateUrl: './dashboard.component.html',
+            styleUrls: ['./dashboard.component.css']
         }), 
-        __metadata('design:paramtypes', [])
-    ], AppComponent);
-    return AppComponent;
+        __metadata('design:paramtypes', [flower_service_1.FlowerService])
+    ], DashboardComponent);
+    return DashboardComponent;
 }());
-exports.AppComponent = AppComponent;
-//# sourceMappingURL=app.component.js.map
+exports.DashboardComponent = DashboardComponent;
+//# sourceMappingURL=dashboard.component.js.map

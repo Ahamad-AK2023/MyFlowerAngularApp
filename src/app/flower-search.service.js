@@ -9,19 +9,22 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var AppComponent = (function () {
-    function AppComponent() {
-        this.title = 'Tour of Flowers';
+var http_1 = require('@angular/http');
+require('rxjs/add/operator/map');
+var FlowerSearchService = (function () {
+    function FlowerSearchService(http) {
+        this.http = http;
     }
-    AppComponent = __decorate([
-        core_1.Component({
-            selector: 'my-app',
-            template: "\n  <h1>{{title}}</h1>\n  <nav>\n    <a routerLink=\"/dashboard\" routerLinkActive=\"active\">Dashboard</a>\n    <a routerLink=\"/flowers\" routerLinkActive=\"active\">Flowers</a>\n  </nav>\n  <router-outlet></router-outlet>\n  ",
-            styleUrls: ['./app.component.css'],
-        }), 
-        __metadata('design:paramtypes', [])
-    ], AppComponent);
-    return AppComponent;
+    FlowerSearchService.prototype.search = function (term) {
+        return this.http
+            .get("app/flowers/?flower_name=" + term)
+            .map(function (response) { return response.json().data; });
+    };
+    FlowerSearchService = __decorate([
+        core_1.Injectable(), 
+        __metadata('design:paramtypes', [http_1.Http])
+    ], FlowerSearchService);
+    return FlowerSearchService;
 }());
-exports.AppComponent = AppComponent;
-//# sourceMappingURL=app.component.js.map
+exports.FlowerSearchService = FlowerSearchService;
+//# sourceMappingURL=flower-search.service.js.map

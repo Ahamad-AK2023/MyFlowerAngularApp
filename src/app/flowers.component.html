@@ -1,0 +1,23 @@
+<h2>My Flowers</h2>
+<ul class="flowers">
+  <li *ngFor="let flower of flowers"
+    [class.selected]="flower === selectedFlower"
+    (click)="onSelect(flower)">
+    <span class="badge">{{flower.flower_id}}</span> 
+    <span>{{flower.flower_name}}</span>
+    <button class="delete"
+    (click)="delete(flower); $event.stopPropagation()">x</button>
+  </li>
+</ul>
+<div *ngIf="selectedFlower">
+  <h2>
+    {{selectedFlower.flower_name | uppercase}} is my selected flower
+  </h2>
+  <button (click)="gotoDetail()">View Details</button>
+  <div>
+    <label>Flower name:</label> <input #flowerName />
+    <button (click)="add(flowerName.value); flowerName.value=''">
+      Add
+    </button>
+  </div>
+</div>

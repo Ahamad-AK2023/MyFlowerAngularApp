@@ -1,0 +1,11 @@
+<div id="search-component">
+    <h4>You can Search the Flowers</h4>
+    <input #searchBox id="search-box" (keyup)="search(searchBox.value)" />
+    <div>
+      <div *ngIf="searchBox.value.length > 0 && !((flowers&& flowers.length>0)  | async)" >...</div>
+      <div *ngFor="let flower of flowers | async"
+           (click)="gotoDetail(flower)" class="search-result" >
+        {{flower.flower_name}}
+      </div>
+    </div>
+  </div>

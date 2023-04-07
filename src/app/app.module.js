@@ -11,8 +11,17 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var platform_browser_1 = require('@angular/platform-browser');
 var forms_1 = require('@angular/forms'); // <-- NgModel lives here
+var http_1 = require('@angular/http');
+// Imports for loading & configuring the in-memory web api
+var angular_in_memory_web_api_1 = require('angular-in-memory-web-api');
+var in_memory_flowerservice_1 = require('./in-memory-flowerservice');
 var app_component_1 = require('./app.component');
+var flowers_component_1 = require('./flowers.component');
 var flower_features_component_1 = require('./flower-features.component');
+var flower_service_1 = require('./flower.service');
+var dashboard_component_1 = require('./dashboard.component');
+var app_routing_module_1 = require('./app-routing.module');
+var flower_search_component_1 = require('./flower-search.component');
 var AppModule = (function () {
     function AppModule() {
     }
@@ -20,11 +29,20 @@ var AppModule = (function () {
         core_1.NgModule({
             imports: [
                 platform_browser_1.BrowserModule,
-                forms_1.FormsModule // <-- import the FormsModule before binding with [(ngModel)]
+                forms_1.FormsModule,
+                app_routing_module_1.AppRoutingModule,
+                http_1.HttpModule,
+                angular_in_memory_web_api_1.InMemoryWebApiModule.forRoot(in_memory_flowerservice_1.InMemoryDataService)
             ],
             declarations: [
                 app_component_1.AppComponent,
-                flower_features_component_1.FlowerFeaturesComponent
+                dashboard_component_1.DashboardComponent,
+                flowers_component_1.FlowersComponent,
+                flower_features_component_1.FlowerFeaturesComponent,
+                flower_search_component_1.FlowerSearchComponent
+            ],
+            providers: [
+                flower_service_1.FlowerService
             ],
             bootstrap: [app_component_1.AppComponent]
         }), 

@@ -1,20 +1,36 @@
-import { Component, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Params } from '@angular/router';
+import { Location } from '@angular/common';
+import 'rxjs/add/operator/switchMap';
 import { Flower } from './flower';
+import { FlowerService }  from './flower.service';
+
 @Component({
   selector: 'flower-features',
-  template: `
-    <div *ngIf="flower">
-      <h2>{{flower.flower_name}} Features!</h2>
-      <div><label>id: </label>{{flower.flower_id}}</div>
-      <div>
-        <label>name: </label>
-        <input [(ngModel)]="flower.flower_name" placeholder="flower_name"/>
-      </div>
-      <div><label>Price: </label>{{flower.flower_Price}}</div>
-    </div>
-    
-  `,
+  templateUrl: './flower-features.component.html',
+  styleUrls: [ './flower-features.component.css' ]
 })
-export class FlowerFeaturesComponent {
-  @Input() flower: Flower;
+
+export class FlowerFeaturesComponent implements OnInit  {
+  flower: Flower;
+  constructor(
+    private flowerService: FlowerService,
+    private route: ActivatedRoute,
+    private location: Location
+  ) {}
+
+  ngOnInit(): void {
+    this.route.params
+      .switchMap((params: Params) => this.flowerService.getFlower(+params['flower_id']))
+      .subscribe(flower => this.flower = flower);
+  }
+
+  goBack(): void {
+    this.location.back();
+  }
+
+  save(): void {
+    this.flowerService.update(this.flower)
+      .then(() => this.goBack());
+  }
 }
